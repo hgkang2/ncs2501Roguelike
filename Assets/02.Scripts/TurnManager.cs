@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class TurnManager
 {
-public event System.Action OnTick;
-  private int m_TurnCount;
-  public TurnManager()
-  {
-    m_TurnCount = 1;
-  }
-  public void Tick()
-  {
-    m_TurnCount ++;
-    Debug.Log( $"Current turn count : {m_TurnCount}");
-    OnTick?.Invoke();
-    /*if (OnTick != null)
+    public event System.Action OnTick;
+    private int m_TurnCount;
+
+    public TurnManager()
     {
-        Ontick.Invoke();
+        m_TurnCount = 1;
     }
-    */
-  }
+
+    public void Tick()
+    {
+        m_TurnCount++;
+        Debug.Log($"Current turn count : {m_TurnCount }");
+        OnTick?.Invoke(); 
+        //if (OnTick != null)
+        //{
+        //    OnTick.Invoke();
+        //}
+        
+    }
 }

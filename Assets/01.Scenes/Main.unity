@@ -299,8 +299,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e90fff4e09799d43a25ab2662af5393, type: 2}
   - {fileID: 11400000, guid: a060952442eddde4eaa3a4ccebb1befd, type: 2}
   FoodPrefab:
-  - {fileID: 1246513417690032018, guid: dad99079d9dc99b448441668b6389f74, type: 3}
-  - {fileID: 1023800930416326614, guid: 703ace2564cd94448bd1928dd540b92a, type: 3}
+  - {fileID: 7372421384517025968, guid: dad99079d9dc99b448441668b6389f74, type: 3}
+  - {fileID: 6006177794121909024, guid: 703ace2564cd94448bd1928dd540b92a, type: 3}
+  - {fileID: -3872386426564440425, guid: 58e4845a8c2240545bb40f06111ec64e, type: 3}
+  - {fileID: 6018057983508887203, guid: 9f47053c6396645479d21f9c7229a977, type: 3}
+  WallPrefab:
+  - {fileID: 9018834958625769279, guid: 143c359e366573a4ca612ba9185a3360, type: 3}
+  - {fileID: 1161349465313556129, guid: 8c67238cf67d54341a0a8bcab9f72e6c, type: 3}
+  - {fileID: 5185215805568195628, guid: 9e0b730ccfd2c304b9dd7b76c3e8653a, type: 3}
   minFood: 1
   maxFood: 6
 --- !u!156049354 &1652232253

@@ -7,6 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     private BoardManager m_Board;
     private Vector2Int m_CellPosition;
+    private bool m_IsGameOver;
+    
+    public void Init()
+    {
+        m_IsGameOver = false;
+    }
 
     public void Spawn(BoardManager boardManager, Vector2Int cell)
     {
@@ -21,11 +27,28 @@ public class PlayerController : MonoBehaviour
         // 보드에서의 player위치 지정 => 화면에서 제대로된 위치에 표시
         transform.position = m_Board.CellToWorld(m_CellPosition);
     }
+    public void GameOver()
+    {
+        m_IsGameOver = true;
+    }
 
     private void Update()
-    {
+    {   
+        if(m_IsGameOver)
+        {
+            if(Keyboard.current.enterKey.wasPressedThisFrame)
+            {
+                GameManager.Instance.StartNewGame();
+            }
+            return;
+        }
+        if (m_IsGameOver) return;
         Vector2Int newCellTarget = m_CellPosition;
         bool hasMoved = false;
+        if(m_IsGameOver)
+        {
+            return;
+        }
 
         if (Keyboard.current.upArrowKey.wasPressedThisFrame)
         {

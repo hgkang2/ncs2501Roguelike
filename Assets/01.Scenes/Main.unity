@@ -307,6 +307,7 @@ MonoBehaviour:
   - {fileID: 9018834958625769279, guid: 143c359e366573a4ca612ba9185a3360, type: 3}
   - {fileID: 1161349465313556129, guid: 8c67238cf67d54341a0a8bcab9f72e6c, type: 3}
   - {fileID: 5185215805568195628, guid: 9e0b730ccfd2c304b9dd7b76c3e8653a, type: 3}
+  ExitCellPrefab: {fileID: 395878620270775749, guid: 71f662662de97af439e93048b5cac6ab, type: 3}
   minFood: 1
   maxFood: 6
 --- !u!156049354 &1652232253

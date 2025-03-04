@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.Tilemaps;
@@ -16,13 +17,13 @@ public class BoardManager : MonoBehaviour
     private Tilemap m_Tilemap;
     private Grid m_Grid;
     private List<Vector2Int> m_EmptyCellsList;
-
     public int Width;
     public int Height;
     public Tile[] GroundTiles;
     public Tile[] WallTiles;
     public FoodObject[] FoodPrefab;
     public WallObject[] WallPrefab;
+    public ExitCellObject ExitCellPrefab;
     public int minFood;
     public int maxFood;
 
@@ -59,8 +60,30 @@ public class BoardManager : MonoBehaviour
         }
         // 플레이어가 등장하는 위치는 빈타일이 아니므로 빼준다
         m_EmptyCellsList.Remove(new Vector2Int(1, 1));
+
+        Vector2Int endCoord = new Vector2Int(Width -2 , Height -2);
+        AddObject(Instantiate(ExitCellPrefab),endCoord);
+        m_EmptyCellsList.Remove(endCoord);
+
         GenerateWall();
         GenerateFood();
+    }
+    public void Clean()
+    {
+        if(m_BoardData == null)
+        return;
+        for (int y = 0; y < Height; y++)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                var CellData = m_BoardData[x,y];
+                if (CellData.ContainedObject != null)
+                {
+                    Destroy(CellData.ContainedObject.gameObject);
+                }
+                SetCellTile(new Vector2Int(x,y),null);
+            }
+        }
     }
 
     public Vector3 CellToWorld(Vector2Int cellIndex)
@@ -126,6 +149,5 @@ public class BoardManager : MonoBehaviour
         data.ContainedObject = obj;
         obj.Init(coord);
     }
-
     
 }

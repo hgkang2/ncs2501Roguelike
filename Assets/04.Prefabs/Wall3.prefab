@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObstacleTile: {fileID: 11400000, guid: e0d2d80802c17634f8e40f0a8baa36e8, type: 2}
-  Hp1Tile: {fileID: 11400000, guid: 70d11aa08e4be004fb786bff1524fcc7, type: 2}
+  HP1Tile: {fileID: 11400000, guid: 70d11aa08e4be004fb786bff1524fcc7, type: 2}
   MaxHealth: 5

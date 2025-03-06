@@ -308,6 +308,10 @@ MonoBehaviour:
   - {fileID: 1161349465313556129, guid: 8c67238cf67d54341a0a8bcab9f72e6c, type: 3}
   - {fileID: 5185215805568195628, guid: 9e0b730ccfd2c304b9dd7b76c3e8653a, type: 3}
   ExitPrefab: {fileID: 395878620270775749, guid: 71f662662de97af439e93048b5cac6ab, type: 3}
+  EnemyPrefab:
+  - {fileID: 6748882983951723231, guid: d59491f65fd59af42bcad79b46942ec9, type: 3}
+  - {fileID: 1935478058399117351, guid: 326399d41e05bea4ab794e3b1c0db69b, type: 3}
+  - {fileID: 3418656272088166313, guid: 23577ef613d0baa4d9407b623903166e, type: 3}
   minFood: 1
   maxFood: 6
 --- !u!156049354 &1652232253

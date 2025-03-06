@@ -6,13 +6,23 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 5.0f;
-
+    private readonly int  hashMoving = Animator.StringToHash("Moving");
+    private readonly int hashAttack = Animator.StringToHash("Attack");
+    public Vector2Int Cell { 
+        get
+        {
+            return m_CellPosition;
+        }
+        private set{}
+        }
     private BoardManager m_Board;
     private Vector2Int m_CellPosition;
     private bool m_IsGameOver;
     private bool m_IsMoving;
     private Vector3 m_MoveTarget;
     private Animator m_Animator;
+
+
 
     private void Awake()
     {
@@ -51,7 +61,7 @@ public class PlayerController : MonoBehaviour
             m_MoveTarget = m_Board.CellToWorld(m_CellPosition);
         }
         // todo : StringToHash 로 변환
-        m_Animator.SetBool("Moving", m_IsMoving);
+        m_Animator.SetBool(hashMoving , m_IsMoving);
     }
 
     private void Update()
@@ -75,7 +85,7 @@ public class PlayerController : MonoBehaviour
             if (transform.position == m_MoveTarget)
             {
                 m_IsMoving = false;
-                m_Animator.SetBool("Moving", false);
+                m_Animator.SetBool(hashMoving, false);
                 var cellData = m_Board.GetCellData(m_CellPosition);
                 if (cellData.ContainedObject != null)
                 {
@@ -122,13 +132,16 @@ public class PlayerController : MonoBehaviour
                 {
                     MoveTo(newCellTarget);
                 }
-                else if (cellData.ContainedObject.PlayerWantsToEnter())
+                else 
                 {
-                    MoveTo(newCellTarget);
-                }
-                else if (cellData.ContainedObject.PlayerWantsToEnter() == false)
-                {
-                    m_Animator.SetTrigger("Attack");
+                    if (cellData.ContainedObject.PlayerWantsToEnter())
+                    {
+                        MoveTo(newCellTarget);
+                    }
+                    else
+                    {
+                        m_Animator.SetTrigger(hashAttack);
+                    }
                 }
             }
         }

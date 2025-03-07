@@ -25,7 +25,7 @@ public class BoardManager : MonoBehaviour
     public FoodObject[] FoodPrefab;
     public WallObject[] WallPrefab; // 벽
     public ExitCellObject ExitPrefab;
-    public EnemyObject[]EnemyPrefab;
+    public EnemyObject[] EnemyPrefab;
     public int minFood;
     public int maxFood;
 
@@ -70,7 +70,6 @@ public class BoardManager : MonoBehaviour
         GenerateWall();
         GenerateFood();
         GenerateEnemy();
-        
     }
 
     public void Clean()
@@ -146,13 +145,15 @@ public class BoardManager : MonoBehaviour
             AddObject(newWall, coord);
         }
     }
+
     private void GenerateEnemy()
     {
-        int enemyCount = Random.Range(1,3);
+        int enemyCount = Random.Range(1, 3);
         for (int i = 0; i < enemyCount; i++)
         {
-            int randomIndex = Random.Range(0,m_EmptyCellsList.Count);
+            int randomIndex = Random.Range(0, m_EmptyCellsList.Count);
             Vector2Int coord = m_EmptyCellsList[randomIndex];
+
             m_EmptyCellsList.RemoveAt(randomIndex);
             int enemyType = Random.Range(0, EnemyPrefab.Length);
             EnemyObject newEnemy = Instantiate(EnemyPrefab[enemyType]);
@@ -166,10 +167,5 @@ public class BoardManager : MonoBehaviour
         obj.transform.position = CellToWorld(coord);
         data.ContainedObject = obj;
         obj.Init(coord);
-    }
-
-    internal object GetCellData(Vector2 coord)
-    {
-        throw new System.NotImplementedException();
     }
 }

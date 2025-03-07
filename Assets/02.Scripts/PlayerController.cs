@@ -6,15 +6,16 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 5.0f;
-    private readonly int  hashMoving = Animator.StringToHash("Moving");
-    private readonly int hashAttack = Animator.StringToHash("Attack");
     public Vector2Int Cell { 
         get
         {
             return m_CellPosition;
         }
         private set{}
-        }
+    }
+    
+    private readonly int hashMoving = Animator.StringToHash("Moving");
+    private readonly int hashAttack = Animator.StringToHash("Attack");
     private BoardManager m_Board;
     private Vector2Int m_CellPosition;
     private bool m_IsGameOver;
@@ -22,7 +23,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 m_MoveTarget;
     private Animator m_Animator;
 
-
+    //public Vector2Int GetPlayerPosition()
+    //{
+    //    return m_CellPosition;
+    //}
 
     private void Awake()
     {
@@ -60,8 +64,7 @@ public class PlayerController : MonoBehaviour
             m_IsMoving = true;
             m_MoveTarget = m_Board.CellToWorld(m_CellPosition);
         }
-        // todo : StringToHash 로 변환
-        m_Animator.SetBool(hashMoving , m_IsMoving);
+        m_Animator.SetBool(hashMoving, m_IsMoving);
     }
 
     private void Update()
@@ -132,8 +135,8 @@ public class PlayerController : MonoBehaviour
                 {
                     MoveTo(newCellTarget);
                 }
-                else 
-                {
+                else
+                { 
                     if (cellData.ContainedObject.PlayerWantsToEnter())
                     {
                         MoveTo(newCellTarget);

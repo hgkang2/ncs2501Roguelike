@@ -244,6 +244,7 @@ MonoBehaviour:
   BoardManager: {fileID: 1652232252}
   PlayerController: {fileID: 1662404790}
   UIDoc: {fileID: 1712680924}
+  AndroidPanel: {fileID: 0}
 --- !u!4 &184349359
 Transform:
   m_ObjectHideFlags: 0
@@ -717,6 +718,10 @@ MonoBehaviour:
   - {fileID: 3418656272088166313, guid: 23577ef613d0baa4d9407b623903166e, type: 3}
   minFood: 3
   maxFood: 6
+  minWall: 3
+  maxWall: 6
+  minEnemy: 3
+  maxEnemy: 6
 --- !u!156049354 &1652232253
 Grid:
   m_ObjectHideFlags: 0

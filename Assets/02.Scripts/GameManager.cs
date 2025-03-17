@@ -13,10 +13,16 @@ public class GameManager : MonoBehaviour
     public BoardManager BoardManager;
     public PlayerController PlayerController;
     public UIDocument UIDoc;
+    public GameObject AndroidPanel;
     #endregion
 
     // property
     public TurnManager TurnManager { get; private set; }
+    public int Level
+    {
+        get { return m_CurrentLevel; }
+        private set { }
+    }
 
     #region private
     private const int START_FOOD_AMOUNT = 100;
@@ -27,6 +33,7 @@ public class GameManager : MonoBehaviour
     private int m_CurrentLevel;
     private VisualElement m_GameOverPanel;
     private Label m_GameOverMessage;
+    private AudioSource audioSource;
     #endregion
 
     #region Singleton
@@ -36,13 +43,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
-        }    
+        }
         Instance = this;
     }
     #endregion
 
     void Start()
     {
+#if UNITY_ANDROID
+        Camera camera = Camera.main;
+        camera.orthographicSize = 12;
+        camera.transform.position = new Vector3(6, 4, -10);
+        AndroidPanel.SetActive(true);
+#else
+        AndroidPanel.SetActive(false);
+#endif
+        audioSource = GetComponent<AudioSource>();
+
         TurnManager = new TurnManager();
         TurnManager.OnTick += OnTurnHappen;
 
@@ -70,11 +87,10 @@ public class GameManager : MonoBehaviour
 
     public void NewLevel()
     {
+        m_CurrentLevel++;
         BoardManager.Clean();
         BoardManager.Init();
         PlayerController.Spawn(BoardManager, new Vector2Int(1, 1));
-
-        m_CurrentLevel++;
     }
 
     void OnTurnHappen()
@@ -92,6 +108,14 @@ public class GameManager : MonoBehaviour
             PlayerController.GameOver();
             m_GameOverPanel.style.visibility = Visibility.Visible;
             m_GameOverMessage.text = $"{GOS1} {m_CurrentLevel} {GOS2}";
+        }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }
